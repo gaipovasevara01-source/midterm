@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SoundWave — Discover new music</title>
+  <script>
+    try { document.documentElement.setAttribute('data-bs-theme', localStorage.getItem('sw-theme') || 'dark'); } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet"
+        onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Icon sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none" aria-hidden="true">
+    <symbol id="i-play" viewBox="0 0 16 16"><path d="M4 2.5v11l9-5.5z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 16 16"><path d="M4 2h3v12H4zM9 2h3v12H9z"/></symbol>
+    <symbol id="i-prev" viewBox="0 0 16 16"><path d="M3 2h2v12H3zM14 2v12L6 8z"/></symbol>
+    <symbol id="i-next" viewBox="0 0 16 16"><path d="M11 2h2v12h-2zM2 2l8 6-8 6z"/></symbol>
+  </svg>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark sw-navbar sticky-top py-3" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand sw-brand fs-3 d-flex align-items-center gap-2" href="#home">
+        <span class="sw-eq d-inline-flex align-items-end gap-1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        SoundWave
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-lg-4 me-auto mb-3 mb-lg-0 gap-lg-3">
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#artists">Artists</a></li>
+          <li class="nav-item"><a class="nav-link" href="#playlists">Playlists</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        </ul>
+        <form class="d-flex me-lg-4 mb-3 mb-lg-0" role="search">
+          <label for="search" class="visually-hidden">Search songs, artists, playlists</label>
+          <input class="form-control form-control-sm rounded-pill px-3" type="search" id="search" placeholder="Search songs, artists, playlists">
+        </form>
+        <div class="form-check form-switch text-light mb-0">
+          <input class="form-check-input" type="checkbox" role="switch" id="themeToggle" checked>
+          <label class="form-check-label" for="themeToggle">Dark mode</label>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <h1 class="visually-hidden">SoundWave — discover new music</h1>
+
+    <!-- CAROUSEL: featured artists -->
+    <section id="home" class="container mt-4 mt-lg-5 mb-5 pb-lg-3 px-sm-2" aria-label="Featured artists">
+      <div id="featured" class="carousel slide sw-carousel" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#featured" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#featured" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#featured" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner rounded-4">
+          <div class="carousel-item active">
+            <img src="images/slide1.jpg" class="d-block w-100 sw-slide-img" alt="Guitar and fairy lights in a dim bedroom">
+            <div class="carousel-caption text-start px-3 px-md-5 pb-5">
+              <p class="sw-eyebrow text-uppercase small mb-2">Featured artist</p>
+              <h2 class="sw-title display-4">beabadoobee</h2>
+              <p class="d-none d-md-block mb-4">Dreamy indie pop with fuzzy guitars.</p>
+              <button type="button" class="btn btn-primary btn-lg" data-track="Ever Seen" data-artist="beabadoobee">Listen Now</button>
+              <a href="#artists" class="btn btn-outline-light btn-lg">Explore</a>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="images/slide2.jpg" class="d-block w-100 sw-slide-img" alt="Band on a stage under purple lights">
+            <div class="carousel-caption text-start px-3 px-md-5 pb-5">
+              <p class="sw-eyebrow text-uppercase small mb-2">Featured artist</p>
+              <h2 class="sw-title display-4">5 Seconds of Summer</h2>
+              <p class="d-none d-md-block mb-4">Loud pop rock with big choruses.</p>
+              <button type="button" class="btn btn-primary btn-lg" data-track="Youngblood" data-artist="5 Seconds of Summer">Listen Now</button>
+              <a href="#artists" class="btn btn-outline-light btn-lg">Explore</a>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="images/slide3.jpg" class="d-block w-100 sw-slide-img" alt="Pop singer silhouette under a spotlight">
+            <div class="carousel-caption text-start px-3 px-md-5 pb-5">
+              <p class="sw-eyebrow text-uppercase small mb-2">Featured artist</p>
+              <h2 class="sw-title display-4">Ariana Grande</h2>
+              <p class="d-none d-md-block mb-4">Smooth vocals and modern pop.</p>
+              <button type="button" class="btn btn-primary btn-lg" data-track="we can't be friends" data-artist="Ariana Grande">Listen Now</button>
+              <a href="#artists" class="btn btn-outline-light btn-lg">Explore</a>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#featured" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#featured" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- CARDS: Artist / Album / Playlist -->
+    <section id="artists" class="container mb-5 pb-lg-3 px-sm-2">
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+          <h2 class="sw-title mb-1">Made for you</h2>
+          <p class="sw-muted mb-0">Three picks to begin your week.</p>
+        </div>
+      </div>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <article class="card h-100 sw-card">
+            <img src="images/artist.jpg" class="card-img-top" alt="Band silhouette on a stage">
+            <div class="card-body p-4">
+              <p class="badge sw-tag mb-3">Artist</p>
+              <h3 class="card-title h5 sw-title">The 1975</h3>
+              <p class="card-text sw-muted">Synth-rich pop rock with big choruses. Start with About You.</p>
+            </div>
+            <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
+              <div class="btn-group btn-group-sm" role="group" aria-label="Artist actions">
+                <button type="button" class="btn btn-primary" data-track="About You" data-artist="The 1975">Listen Now</button>
+                <a href="#" class="btn btn-outline-primary">Explore</a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="col">
+          <article class="card h-100 sw-card">
+            <img src="images/album.jpg" class="card-img-top" alt="Vinyl record on a table">
+            <div class="card-body p-4">
+              <p class="badge sw-tag mb-3">Album</p>
+              <h3 class="card-title h5 sw-title">AM</h3>
+              <p class="card-text sw-muted">Arctic Monkeys at their moodiest. Start with Do I Wanna Know?</p>
+            </div>
+            <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
+              <div class="btn-group btn-group-sm" role="group" aria-label="Album actions">
+                <button type="button" class="btn btn-primary" data-track="Do I Wanna Know?" data-artist="Arctic Monkeys">Listen Now</button>
+                <a href="#" class="btn btn-outline-primary">Explore</a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="col" id="playlists">
+          <article class="card h-100 sw-card">
+            <img src="images/playlist.jpg" class="card-img-top" alt="Car window at night with city lights">
+            <div class="card-body p-4">
+              <p class="badge sw-tag mb-3">Playlist</p>
+              <h3 class="card-title h5 sw-title">Late Night Drive</h3>
+              <p class="card-text sw-muted">Dark, slow songs for the road after midnight.</p>
+            </div>
+            <div class="card-footer bg-transparent border-0 px-4 pb-4 pt-0">
+              <div class="btn-group btn-group-sm" role="group" aria-label="Playlist actions">
+                <button type="button" class="btn btn-primary" data-track="Swim" data-artist="Chase Atlantic">Listen Now</button>
+                <a href="#" class="btn btn-outline-primary">Explore</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TWO COLUMNS: Trending (tabs) + New Releases -->
+    <section class="container mb-5 pb-lg-3 px-sm-2">
+      <div class="sw-panel rounded-4 p-4 p-lg-5">
+        <div class="row g-5">
+          <div class="col-12 col-md-6 col-lg-6">
+            <h2 class="sw-title mb-3">Trending</h2>
+            <ul class="nav nav-pills sw-pills gap-2 mb-3" id="trendTabs" role="tablist">
+              <li class="nav-item" role="presentation"><button class="nav-link active rounded-pill" id="t-all" data-bs-toggle="pill" data-bs-target="#p-all" type="button" role="tab" aria-controls="p-all" aria-selected="true">All</button></li>
+              <li class="nav-item" role="presentation"><button class="nav-link rounded-pill" id="t-indie" data-bs-toggle="pill" data-bs-target="#p-indie" type="button" role="tab" aria-controls="p-indie" aria-selected="false">Indie</button></li>
+              <li class="nav-item" role="presentation"><button class="nav-link rounded-pill" id="t-pop" data-bs-toggle="pill" data-bs-target="#p-pop" type="button" role="tab" aria-controls="p-pop" aria-selected="false">Pop</button></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="p-all" role="tabpanel" aria-labelledby="t-all" tabindex="0">
+                <ol class="list-group list-group-flush sw-tracks">
+                  <li class="list-group-item d-flex align-items-center gap-3 py-3 px-0">
+                    <span class="sw-rank">01</span>
+                    <div class="me-auto">
+                      <div class="fw-bold">Ever Seen</div>
+                      <small class="sw-muted">beabadoobee</small>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm rounded-circle sw-icon-btn p-0"
+                            data-track="Ever Seen" data-artist="beabadoobee" aria-label="Play Ever Seen">
+                      <svg width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#i-play"/></svg>
+                    </button>
+                  </li>
+                  <li class="list-group-item d-flex align-items-center gap-3 py-3 px-0">
+                    <span class="sw-rank">02</span>
+                    <div class="me-auto">
+                      <div class="fw-bold">Ghost of You</div>
+                      <small class="sw-muted">5 Seconds of Summer</small>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm rounded-circle sw-icon-btn p-0"
+                            data-track="Ghost of You" data-artist="5 Seconds of Summer" aria-label="Play Ghost of You">
+                      <svg width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#i-play"/></svg>
+                    </button>
+                  </li>
+                  <li class="list-group-item d-flex align-items-center gap-3 py-3 px-0">
+                    <span class="sw-rank">03</span>
+                    <div class="me-auto">
+                      <div class="fw-bold">we can't be friends</div>
+                      <small class="sw-muted">Ariana Grande</small>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm rounded-circle sw-icon-btn p-0"
+                            data-track="we can't be friends" data-artist="Ariana Grande" aria-label="Play we can't be friends">
+                      <svg width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#i-play"/></svg>
+                    </button>
+                  </li>
+                </ol>
+              </div>
+              <div class="tab-pane fade" id="p-indie" role="tabpanel" aria-labelledby="t-indie" tabindex="0">
+                <ol class="list-group list-group-flush sw-tracks">
+                  <li class="list-group-item d-flex align-items-center gap-3 py-3 px-0">
+                    <span class="sw-rank">01</span>
+                    <div class="me-auto">
+                      <div class="fw-bold">The Perfect Pair</div>
+                      <small class="sw-muted">beabadoobee</small>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm rounded-circle sw-icon-btn p-0"
+                            data-track="The Perfect Pair" data-artist="beabadoobee" aria-label="Play The Perfect Pair">
+                      <svg width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#i-play"/></svg>
+                    </button>
+                  </li>
+                  <li class="list-group-item d-flex align-items-center gap-3 py-3 px-0">
+                    <span class="sw-rank">02</span>
+                    <div class="me-auto">
+                      <div class="fw-bold">Do I Wanna Know?</div>
+                      <small class="sw-muted">Arctic Monkeys</small>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm rounded-circle sw-icon-btn p-0"
+                            data-track="Do I Wanna Know?" data-artist="Arctic Monkeys" aria-label="Play Do I Wanna Know?">
+                      <svg width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#i-play"/></svg>
+                    </button>
+                  </li>
+                  <li class="list-group-item d-flex align-items-center gap-3 py-3 px-0">
+                    <span class="sw-rank">03</span>
+                    <div class="me-auto">
+                      <div class="fw-bold">About You</div>
+                      <small class="sw-muted">The 1975</small>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm rounded-circle sw-icon-btn p-0"
+                            data-track="About You" data-artist="The 1975" aria-label="Play About You">
+                      <svg width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#i-play"/></svg>
+                    </button>
+                  </li>
+                </ol>
+              </div>
+              <div class="tab-pane fade" id="p-pop" role="tabpanel" aria-labelledby="t-pop" tabindex="0">
+                <ol class="list-group list-group-flush sw-tracks">
+                  <li class="list-group-item d-flex align-items-center gap-3 py-3 px-0">
+                    <span class="sw-rank">01</span>
+                    <div class="me-auto">
+                      <div class="fw-bold">Youngblood</div>
+                      <small class="sw-muted">5 Seconds of Summer</small>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm rounded-circle sw-icon-btn p-0"
+                            data-track="Youngblood" data-artist="5 Seconds of Summer" aria-label="Play Youngblood">
+                      <svg width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#i-play"/></svg>
+                    </button>
+                  </li>
+                  <li class="list-group-item d-flex align-items-center gap-3 py-3 px-0">
+                    <span class="sw-rank">02</span>
+                    <div class="me-auto">
+                      <div class="fw-bold">pov</div>
+                      <small class="sw-muted">Ariana Grande</small>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm rounded-circle sw-icon-btn p-0"
+                            data-track="pov" data-artist="Ariana Grande" aria-label="Play pov">
+                      <svg width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#i-play"/></svg>
+                    </button>
+                  </li>
+                  <li class="list-group-item d-flex align-items-center gap-3 py-3 px-0">
+                    <span class="sw-rank">03</span>
+                    <div class="me-auto">
+                      <div class="fw-bold">Close as Strangers</div>
+                      <small class="sw-muted">5 Seconds of Summer</small>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm rounded-circle sw-icon-btn p-0"
+                            data-track="Close as Strangers" data-artist="5 Seconds of Summer" aria-label="Play Close as Strangers">
+                      <svg width="14" height="14" fill="currentColor" aria-hidden="true"><use href="#i-play"/></svg>
+                    </button>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-6">
+            <h2 class="sw-title mb-3">New releases</h2>
+            <p class="sw-muted mb-3">Fresh picks</p>
+            <ul class="list-group list-group-flush sw-tracks">
+              <li class="list-group-item d-flex justify-content-between align-items-center py-3 px-0">
+                <div><div class="fw-bold">Sweet Venom</div><small class="sw-muted">Single · ENHYPEN</small></div>
+                <a href="#" class="btn btn-outline-primary btn-sm">Explore</a>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center py-3 px-0">
+                <div><div class="fw-bold">Super</div><small class="sw-muted">Single · SEVENTEEN</small></div>
+                <a href="#" class="btn btn-outline-primary btn-sm">Explore</a>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center py-3 px-0">
+                <div><div class="fw-bold">Fix You</div><small class="sw-muted">Single · Coldplay</small></div>
+                <a href="#" class="btn btn-outline-primary btn-sm">Explore</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THREE COLUMNS: browse by mood -->
+    <section id="about" class="container mb-5 pb-lg-3 px-sm-2">
+      <div class="mb-4">
+        <h2 class="sw-title mb-1">Find music by mood</h2>
+        <p class="sw-muted mb-0">SoundWave helps you discover artists you would not find on your own.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="sw-mood rounded-4 p-4 h-100">
+            <h3 class="h4 sw-title">Calm</h3>
+            <p class="sw-muted mb-4">Soft textures and slow tempos for winding down.</p>
+            <a href="#" class="btn btn-outline-primary btn-lg">Explore</a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="sw-mood rounded-4 p-4 h-100">
+            <h3 class="h4 sw-title">Focus</h3>
+            <p class="sw-muted mb-4">Steady, lyric-free tracks that keep you on task.</p>
+            <a href="#" class="btn btn-outline-primary btn-lg">Explore</a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-lg-4">
+          <div class="sw-mood rounded-4 p-4 h-100">
+            <h3 class="h4 sw-title">Energy</h3>
+            <p class="sw-muted mb-4">Driving rhythms for workouts and long commutes.</p>
+            <a href="#" class="btn btn-outline-primary btn-lg">Explore</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORM: Subscribe -->
+    <section class="container mb-5 px-sm-2" aria-labelledby="sub-title">
+      <div class="sw-subscribe rounded-4 p-4 p-lg-5">
+        <div class="row align-items-center g-4">
+          <div class="col-12 col-lg-5">
+            <h2 id="sub-title" class="sw-title">Get new music every Friday</h2>
+            <p class="mb-0">One short email with five artists worth your time.</p>
+          </div>
+          <div class="col-12 col-lg-7">
+            <form id="subscribe-form" novalidate>
+              <label for="email" class="form-label">Email address</label>
+              <div class="input-group mb-3">
+                <input type="email" class="form-control form-control-lg" id="email" placeholder="you@example.com" required>
+                <button class="btn btn-primary btn-lg" type="submit">Subscribe</button>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="freq" id="weekly" checked>
+                <label class="form-check-label" for="weekly">Weekly</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="freq" id="monthly">
+                <label class="form-check-label" for="monthly">Monthly</label>
+              </div>
+              <div class="form-check mt-2">
+                <input class="form-check-input" type="checkbox" id="agree" required>
+                <label class="form-check-label" for="agree">I agree to receive emails from SoundWave</label>
+              </div>
+              <p id="form-msg" class="mt-3 mb-0 fw-bold" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="sw-footer pt-5 pb-5">
+    <div class="container px-sm-2 pb-5">
+      <div class="row gy-3 align-items-center">
+        <div class="col-12 col-md-6">
+          <span class="sw-brand fs-4">SoundWave</span>
+          <p class="mb-0 small">Discover music you have not heard yet.</p>
+        </div>
+        <div class="col-12 col-md-6">
+          <ul class="nav justify-content-md-end">
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#artists">Artists</a></li>
+            <li class="nav-item"><a class="nav-link" href="#playlists">Playlists</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="small mt-4 mb-0">&copy; 2026 SoundWave. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- MINI PLAYER -->
+  <div class="sw-player fixed-bottom py-2 py-md-3" role="region" aria-label="Music player">
+    <div class="container px-sm-2">
+      <div class="row align-items-center g-2 g-md-3">
+        <div class="col-7 col-md-4 d-flex align-items-center gap-3">
+          <img id="playerCover" src="images/everseen.jpg" class="rounded-3 sw-cover" width="48" height="48" alt="">
+          <div class="text-truncate">
+            <div id="playerTitle" class="fw-bold text-truncate">Ever Seen</div>
+            <small id="playerArtist" class="sw-muted">beabadoobee</small>
+          </div>
+        </div>
+        <div class="col-5 col-md-3 d-flex justify-content-end justify-content-md-center align-items-center gap-2" role="group" aria-label="Playback controls">
+          <button type="button" id="prevBtn" class="btn btn-outline-primary rounded-circle sw-icon-btn p-0" aria-label="Previous track">
+            <svg width="16" height="16" fill="currentColor" aria-hidden="true"><use href="#i-prev"/></svg>
+          </button>
+          <button type="button" id="playBtn" class="btn btn-primary rounded-circle sw-icon-btn p-0" aria-label="Play">
+            <svg width="16" height="16" fill="currentColor" aria-hidden="true"><use id="playIcon" href="#i-play"/></svg>
+          </button>
+          <button type="button" id="nextBtn" class="btn btn-outline-primary rounded-circle sw-icon-btn p-0" aria-label="Next track">
+            <svg width="16" height="16" fill="currentColor" aria-hidden="true"><use href="#i-next"/></svg>
+          </button>
+        </div>
+        <div class="col-12 col-md-5 d-flex align-items-center gap-2">
+          <small id="curTime">0:00</small>
+          <div class="progress flex-grow-1" id="progress" role="progressbar" aria-label="Track progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+          <small id="durTime">3:45</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS: local file first, CDN fallback -->
+  <script src="js/bootstrap.bundle.min.js"
+          onerror="this.onerror=null;var f=document.createElement('script');f.src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js';document.body.appendChild(f)"></script>
+  <script src="script.js"></script>
+</body>
+</html>
